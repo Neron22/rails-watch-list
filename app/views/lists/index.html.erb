@@ -1,0 +1,14 @@
+<div class="container">
+
+  <h1 class ="d-flex justify-content-center mt-5">All lists</h1>
+
+  <ul class="list-unstyled">
+    <% @lists.each do |list|%>
+      <li><%= list.title %></li>
+      <li><%= list.overview %></li>
+      <li> <%= list.poster_url %></li>
+      <p>-------------------------------------</p>
+
+    <% end %>
+  </ul>
+</div>
