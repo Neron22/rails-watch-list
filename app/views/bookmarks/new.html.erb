@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class ="d-flex justify-content-center mt-5">Add to list</h1>
+
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.input :comment %>
+    <%= f.input :movie_id %>
+    <%= f.input :list_id %>
+    <%= f.submit "Submit bookmark", class: "btn btn-primary" %>
+  <% end %>
+
+  <p>-------------------------------------</p>
+
+  <br>
+  <br>
+
+  <%= link_to 'Back', lists_path %> |
+</div>

@@ -1,14 +1,32 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(http://www.snackable.fr/wp-content/uploads/2014/10/listes-10-clich%C3%A9s-affiches-film.jpg);">
+  <div class="container">
+    <h1>Découvre et personnalise <strong>tes listes</strong> de <strong>tes films préférés</strong>!</h1>
+    <p>Modifie, ajoute, kiff quoi !</p>
+  </div>
+</div>
+
+
 <div class="container">
 
   <h1 class ="d-flex justify-content-center mt-5">All lists</h1>
+  <div class="my-lists">
+      <div class="left">
 
-  <ul class="list-unstyled">
-    <% @lists.each do |list|%>
-      <li><%= list.title %></li>
-      <li><%= list.overview %></li>
-      <li> <%= list.poster_url %></li>
-      <p>-------------------------------------</p>
+        <ul class="list-unstyled">
+          <% @lists.each do |list|%>
+            <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.ionos.fr/digitalguide/fileadmin/DigitalGuide/Teaser/movie-maker-alternative.jpg)">
+              <li><%= link_to list.name, list_path(list) %></li>
+            </div>
+          <% end %>
+        </ul>
+      </div>
 
-    <% end %>
-  </ul>
+      <div class="right">
+        <%= simple_form_for [@list] do |f| %>
+          <%= f.input :name %>
+          <%= f.submit "Create a new list", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+  </div>
+
 </div>

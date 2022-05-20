@@ -1,0 +1,33 @@
+<div class="container">
+  <h1 class ="d-flex justify-content-center mt-5"><%= @list.name.capitalize() %></h1>
+
+
+  <ul class="list-group">
+    <% @list.bookmarks.each do |bookmark| %>
+    <li class="list-group-item"><%= bookmark.movie.title%> : <%=bookmark.movie.overview %></li>
+    <li class="list-group-item"><%=bookmark.movie.rating %></li>
+    <li class="list-group-item"><%= bookmark.movie.poster_url%></li>
+    <li class="list-group-item">
+      <%= link_to "Remove",
+                  bookmark_path(bookmark),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+    </li>
+    <li>______________________________</li>
+    <% end %>
+  </ul>
+
+  <br>
+
+  <h3>Add a movie to this list</h3>
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.input :comment %>
+    <%= f.association :movie, as: :radio_buttons %>
+    <%= f.submit "Add movie", class: "btn btn-primary" %>
+  <% end %>
+
+  <br>
+  <p>-------------------------------------</p>
+
+  <%= link_to 'Back', lists_path %> |
+</div>
