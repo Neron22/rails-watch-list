@@ -12,11 +12,12 @@ class ListsController < ApplicationController
   end
 
   def create
+    @lists = List.all
     @list = List.new(list_params)
     if @list.save
-      redirect_to list_path(@list)
+      redirect_to root_path(@list)
     else
-      render :new
+      render 'lists/index'
     end
   end
 
