@@ -14,9 +14,15 @@
 
         <ul class="list-unstyled">
           <% @lists.each do |list|%>
-            <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.ionos.fr/digitalguide/fileadmin/DigitalGuide/Teaser/movie-maker-alternative.jpg)">
-              <li><%= link_to list.name, list_path(list) %></li>
-            </div>
+            <% if list.photo.attached? %>
+              <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key, height: 300, crop: :fill %>')">
+                <li><%= link_to list.name, list_path(list) %></li>
+              </div>
+            <% else %>
+              <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.ionos.fr/digitalguide/fileadmin/DigitalGuide/Teaser/movie-maker-alternative.jpg)">
+                <li><%= link_to list.name, list_path(list) %></li>
+              </div>
+            <% end %>
           <% end %>
         </ul>
       </div>
@@ -24,9 +30,9 @@
       <div class="right">
         <%= simple_form_for [@list] do |f| %>
           <%= f.input :name %>
+          <%= f.input :photo, as: :file %>
           <%= f.submit "Create a new list", class: "btn btn-primary" %>
         <% end %>
       </div>
   </div>
-
 </div>
